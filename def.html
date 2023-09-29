@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Rendering with Vue 3</title>
+</head>
+<body>
+    <div id="application">
+        <p v-if="showcontent">This content is displayed using v-if</p>
+        <p v-else>This content is displayed using v-else</p>
+        
+        <p v-show="content">This content is displayed using v-show</p>
+        
+        <ul>
+            <li v-for="content in contents">{{ content }}</li>
+        </ul>
+        
+        <div v-if="showcontents">
+            <p v-for="content in contentsWithConditions" :key="content.id">
+                {{ content.text }}
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.prod.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    showcontent: true,
+                    showcontents: true,
+                    content: ['cont1', 'cont2', 'cont3'],
+                    contentsWithConditions: [
+                        { id: 1, text: 'content 1', show: true },
+                        { id: 2, text: 'content 2', show: false },
+                        { id: 3, text: 'content 3', show: true },
+                    ],
+                };
+            },
+        });
+
+        app.mount('#application');
+    </script>
+</body>
+</html>
